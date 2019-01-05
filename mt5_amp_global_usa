@@ -1,0 +1,28 @@
+#!/bin/bash
+[ "$PLAYONLINUX" = "" ] && exit 0
+source "$PLAYONLINUX/lib/sources"
+    
+TITLE="MetaTrader 5"
+PREFIX="metatrader5"
+ 
+POL_SetupWindow_Init
+POL_Debug_Init
+POL_SetupWindow_presentation "$TITLE" "$TITLE" "http://www.metatrader5.com/" "Tinou" "$PREFIX"
+   
+POL_Wine_SelectPrefix "$PREFIX"
+POL_Wine_PrefixCreate "3.0.4"
+ 
+cd "$WINEPREFIX/drive_c"
+#POL_Download "http://files.metaquotes.net/metaquotes.software.corp/mt5/mt5setup.exe"
+cp ~/Downloads/ampglobalusa5setup.exe ./mt5setup.exe
+   
+POL_Call POL_Install_LunaTheme
+   
+POL_Wine_WaitBefore "$TITLE"
+POL_Wine --ignore-errors "mt5setup.exe"
+POL_Wine_WaitExit "$TITLE"
+ 
+   
+POL_Shortcut "terminal.exe" "$TITLE"
+POL_SetupWindow_Close
+exit
