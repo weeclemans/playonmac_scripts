@@ -14,7 +14,8 @@ POL_Wine_PrefixCreate "3.0.4"
  
 cd "$WINEPREFIX/drive_c"
 #POL_Download "http://files.metaquotes.net/metaquotes.software.corp/mt5/mt5setup.exe"
-cp ~/Downloads/ampglobalusa5setup.exe ./mt5setup.exe
+wget --content-disposition 'https://download.mql5.com/cdn/web/amp.global.clearing/mt5/ampglobalusa5setup.exe?utm_source=download&utm_campaign=AMPUSA-MT5'
+mv ampglobalusa5setup.exe mt5setup.exe
    
 POL_Call POL_Install_LunaTheme
    
